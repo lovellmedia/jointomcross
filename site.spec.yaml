@@ -1,0 +1,181 @@
+# site.spec.yaml — Site-Level Declarative Specification
+# Domain: jointomcross.com
+
+site:
+  domain: "jointomcross.com"
+  netlify_subdomain: "jointomcross"
+  github_repo: "jointomcross"
+  site_title: "Tom Cross - Home Services and Renovations"
+
+topic:
+  name: "Home Services and Renovations"
+  slug: "home-renovations"
+  keywords:
+    - "home renovation"
+    - "home remodeling"
+    - "home services"
+    - "home improvement"
+    - "renovation contractors"
+    - "home repair"
+    - "kitchen renovation"
+    - "bathroom remodeling"
+
+forbidden:
+  terms:
+    - "second language acquisition"
+    - "language learning"
+    - "coffee"
+    - "espresso"
+    - "translation services"
+    - "interpreting"
+  patterns:
+    - "second.?language"
+    - "SLA"
+    - "bilingual"
+    - "multilingual"
+    - "coffee.?roast"
+  generic:
+    - "placeholder"
+    - "lorem ipsum"
+    - "As an AI"
+    - "ChatGPT"
+    - "I don't have access"
+    - "Key concept 1 related to"
+
+template:
+  id: "G2-01"
+  name: "50_50_hybrid"
+  group: 2
+  selection_reason: "50/50 split layout provides balanced design for home services content; next in rotation after excluding G2-03, G1-04, G2-06"
+
+astro:
+  site_url: "https://jointomcross.com"
+  output: "static"
+  integrations:
+    - "astro-seo"
+    - "@astrojs/sitemap"
+  packages:
+    - "astro: ^4.0.0"
+    - "astro-seo: ^1.1.0"
+    - "@astrojs/sitemap: ^3.7.0"
+  dev_packages:
+    - "@playwright/test: ^1.58.2"
+
+pages:
+  homepage:
+    file: "/src/pages/index.astro"
+    layout: "BaseLayout"
+    nav_links: 8
+
+  pillars:
+    - key: "index"
+      file: "/src/pages/home-renovations/index.astro"
+      spec: "specs/pages/index.spec.yaml"
+      name: "Overview"
+      url: "/home-renovations/"
+
+    - key: "history"
+      file: "/src/pages/home-renovations/history.astro"
+      spec: "specs/pages/history.spec.yaml"
+      name: "History & Evolution"
+      url: "/home-renovations/history/"
+
+    - key: "technical-deep-dive"
+      file: "/src/pages/home-renovations/technical-deep-dive.astro"
+      spec: "specs/pages/technical-deep-dive.spec.yaml"
+      name: "Technical Deep-Dive"
+      url: "/home-renovations/technical-deep-dive/"
+
+    - key: "ontology"
+      file: "/src/pages/home-renovations/ontology.astro"
+      spec: "specs/pages/ontology.spec.yaml"
+      name: "Ontology & Knowledge Base"
+      url: "/home-renovations/ontology/"
+
+    - key: "trends"
+      file: "/src/pages/home-renovations/trends.astro"
+      spec: "specs/pages/trends.spec.yaml"
+      name: "Current Trends & Future Outlook"
+      url: "/home-renovations/trends/"
+
+    - key: "tools"
+      file: "/src/pages/home-renovations/tools.astro"
+      spec: "specs/pages/tools.spec.yaml"
+      name: "Tools & Resources"
+      url: "/home-renovations/tools/"
+
+    - key: "challenges"
+      file: "/src/pages/home-renovations/challenges.astro"
+      spec: "specs/pages/challenges.spec.yaml"
+      name: "Common Challenges & Solutions"
+      url: "/home-renovations/challenges/"
+
+components:
+  - "Header.astro"
+  - "Footer.astro"
+  - "Navigation.astro"
+  - "ContentSection.astro"
+  - "Sidebar.astro"
+
+layouts:
+  - name: "BaseLayout.astro"
+    includes: ["astro-seo in <head>", "Header", "Footer", "canonical URL", "meta tags"]
+  - name: "TopicLayout.astro"
+    extends: "BaseLayout"
+    includes: ["Navigation", "Sidebar", "two-column layout"]
+
+content_rules:
+  word_count_min: 3000
+  h2_sections_min: 5
+  external_links_min: 3
+  external_links_max: 10
+  internal_links_min: 4
+  canonical_url: "new URL(Astro.url.pathname, Astro.site)"
+  meta_title_length: [50, 60]
+  meta_description_length: [150, 160]
+  script_directive: "is:inline"
+
+  allowed_sources:
+    - "wikipedia.org"
+    - "nih.gov"
+    - "pubmed.ncbi.nlm.nih.gov"
+    - "gov sites"
+    - "edu sites with public content"
+    - "hgtv.com"
+    - "thisoldhouse.com"
+    - "diynetwork.com"
+
+  blocked_sources:
+    - "cambridge.org/core"
+    - "tandfonline.com"
+    - "routledge.com"
+    - "jstor.org"
+    - "sciencedirect.com"
+    - "apa.org"
+    - "fsi.gov"
+
+interlinking:
+  overview_links_to: "all 6 other pillars"
+  each_pillar_links_to: "overview + at least 4 other pillars"
+  placement: "body text (contextual), NOT sidebar-only"
+  anchor_text: "descriptive, explains relationship"
+  homepage_links_to: "overview page via topic cards"
+
+validation:
+  per_page:
+    - "word_count >= 3000"
+    - "h2_count >= 5"
+    - "internal_links >= 4"
+    - "external_links >= 3"
+    - "forbidden_terms == 0"
+    - "blocked_sources == 0"
+    - "frontmatter has title, description, canonicalURL"
+
+  site_wide:
+    - "all 7 pillar .astro files exist"
+    - "homepage exists and imports BaseLayout"
+    - "npm run build exits 0"
+    - "sitemap-index.xml generated with all page URLs"
+    - "robots.txt exists with correct sitemap URL"
+    - "no temp scripts in project root"
+    - "no .env in git"

@@ -1,0 +1,41 @@
+---
+const navLinks = [
+  { name: 'Home', url: '/' },
+  { name: 'Overview', url: '/home-renovations/' },
+  { name: 'History', url: '/home-renovations/history/' },
+  { name: 'Technical Deep-Dive', url: '/home-renovations/technical-deep-dive/' },
+  { name: 'Ontology', url: '/home-renovations/ontology/' },
+  { name: 'Trends', url: '/home-renovations/trends/' },
+  { name: 'Tools', url: '/home-renovations/tools/' },
+  { name: 'Challenges', url: '/home-renovations/challenges/' },
+];
+---
+
+<header style="background: var(--primary); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <a href="/" style="font-size: 1.5rem; font-weight: bold; color: white; text-decoration: none;">Tom Cross</a>
+    <button id="menu-toggle" aria-label="Toggle menu" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; display: none;">☰</button>
+    <nav id="main-nav">
+      <ul style="display: flex; list-style: none; gap: 1.5rem; margin: 0;">
+        {navLinks.map(link => (
+          <li><a href={link.url} style="color: white; text-decoration: none; padding: 0.5rem;">{link.name}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @media (max-width: 768px) {
+    #menu-toggle { display: block !important; }
+    #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); }
+    #main-nav.active { display: block; }
+    #main-nav ul { flex-direction: column; padding: 1rem; }
+  }
+</style>
+
+<script is:inline>
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('main-nav').classList.toggle('active');
+  });
+</script>

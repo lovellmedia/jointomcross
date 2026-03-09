@@ -1,0 +1,35 @@
+---
+const currentYear = new Date().getFullYear();
+const footerLinks = [
+  { name: 'Overview', url: '/home-renovations/' },
+  { name: 'History', url: '/home-renovations/history/' },
+  { name: 'Trends', url: '/home-renovations/trends/' },
+  { name: 'Tools', url: '/home-renovations/tools/' },
+];
+---
+
+<footer style="background: var(--dark); color: white; padding: 2rem 0; margin-top: 3rem;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+      <div>
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Tom Cross</h3>
+        <p>Expert home renovation services and professional guidance for all your home improvement needs.</p>
+      </div>
+      <div>
+        <h4 style="color: var(--secondary); margin-bottom: 1rem;">Quick Links</h4>
+        <ul style="list-style: none; margin: 0;">
+          {footerLinks.map(link => (
+            <li style="margin-bottom: 0.5rem;"><a href={link.url} style="color: #ccc;">{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--secondary); margin-bottom: 1rem;">Contact</h4>
+        <p>Professional home renovation services<br />Quality craftsmanship guaranteed</p>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #444; padding-top: 1rem; text-align: center; color: #888;">
+      <p>&copy; {currentYear} Tom Cross Home Renovations. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

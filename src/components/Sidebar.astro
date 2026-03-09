@@ -1,0 +1,49 @@
+---
+export interface Props {
+  currentPage: string;
+}
+
+const { currentPage } = Astro.props;
+
+const relatedTopics = [
+  { name: 'Overview', url: '/home-renovations/', key: 'index' },
+  { name: 'History & Evolution', url: '/home-renovations/history/', key: 'history' },
+  { name: 'Technical Deep-Dive', url: '/home-renovations/technical-deep-dive/', key: 'technical-deep-dive' },
+  { name: 'Ontology', url: '/home-renovations/ontology/', key: 'ontology' },
+  { name: 'Current Trends', url: '/home-renovations/trends/', key: 'trends' },
+  { name: 'Tools & Resources', url: '/home-renovations/tools/', key: 'tools' },
+  { name: 'Challenges & Solutions', url: '/home-renovations/challenges/', key: 'challenges' },
+];
+
+const keyPoints = [
+  'Proper planning is essential for successful renovations',
+  'Budget considerations should include contingency funds',
+  'Permits may be required for structural changes',
+  'Professional contractors ensure quality results',
+];
+---
+
+<aside style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">Related Topics</h3>
+  <ul style="list-style: none; margin: 0 0 2rem 0; padding: 0;">
+    {relatedTopics.map(topic => (
+      <li style="margin-bottom: 0.5rem;">
+        {currentPage === topic.key ? (
+          <span style="font-weight: bold; color: var(--secondary);">{topic.name}</span>
+        ) : (
+          <a href={topic.url} style="color: var(--accent);">{topic.name}</a>
+        )}
+      </li>
+    ))}
+  </ul>
+  
+  <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">Key Points</h3>
+  <ul style="list-style: none; margin: 0; padding: 0;">
+    {keyPoints.map(point => (
+      <li style="margin-bottom: 0.75rem; padding-left: 1.25rem; position: relative; font-size: 0.9rem;">
+        <span style="position: absolute; left: 0; color: var(--secondary);">✓</span>
+        {point}
+      </li>
+    ))}
+  </ul>
+</aside>

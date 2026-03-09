@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  currentPage: string;
+}
+
+const { title, description, currentPage } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Navigation currentPath={Astro.url.pathname} />
+  <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem;">
+      <article style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <slot />
+      </article>
+      <Sidebar currentPage={currentPage} />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

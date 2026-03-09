@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const topicCards = [
+  { title: 'Overview', description: 'Comprehensive introduction to home renovation concepts and principles', url: '/home-renovations/', icon: '🏠' },
+  { title: 'History & Evolution', description: 'How home renovation practices have developed over centuries', url: '/home-renovations/history/', icon: '📜' },
+  { title: 'Technical Deep-Dive', description: 'Advanced construction techniques and building science', url: '/home-renovations/technical-deep-dive/', icon: '🔧' },
+  { title: 'Ontology', description: 'Understanding the structure and classification of renovation work', url: '/home-renovations/ontology/', icon: '📐' },
+  { title: 'Trends', description: 'Current and emerging trends in home renovation', url: '/home-renovations/trends/', icon: '📈' },
+  { title: 'Tools & Resources', description: 'Essential tools, materials, and resources for renovation projects', url: '/home-renovations/tools/', icon: '🛠️' },
+  { title: 'Challenges', description: 'Common obstacles and proven solutions in home renovation', url: '/home-renovations/challenges/', icon: '⚡' },
+];
+---
+
+<BaseLayout 
+  title="Tom Cross - Home Renovations & Improvement Services" 
+  description="Professional home renovation services and comprehensive resources for homeowners. Expert guidance on remodeling, repairs, and home improvement projects."
+>
+  <section style="background: linear-gradient(135deg, var(--primary) 0%, #34495e 100%); color: white; padding: 4rem 2rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h1 style="font-size: 3rem; margin-bottom: 1rem; color: white;">Tom Cross Home Renovations</h1>
+      <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">Expert craftsmanship meets innovative design. Your vision, our expertise.</p>
+      <a href="/home-renovations/" style="display: inline-block; background: var(--secondary); color: white; padding: 1rem 2rem; border-radius: 4px; text-decoration: none; font-weight: bold;">Explore Home Renovations</a>
+    </div>
+  </section>
+
+  <section style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem;">Home Renovation Resources</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      {topicCards.map(card => (
+        <a href={card.url} style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-decoration: none; transition: transform 0.2s; display: block;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">{card.icon}</div>
+          <h3 style="color: var(--primary); margin-bottom: 0.5rem;">{card.title}</h3>
+          <p style="color: #666; margin: 0;">{card.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section style="background: #f0f0f0; padding: 4rem 2rem;">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+      <h2 style="margin-bottom: 2rem;">Why Choose Professional Home Renovation?</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left;">
+        <div style="background: white; padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: var(--secondary);">Quality Assurance</h3>
+          <p>Professional contractors deliver workmanship that meets industry standards and building codes.</p>
+        </div>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: var(--secondary);">Time Efficiency</h3>
+          <p>Experienced teams complete projects faster while maintaining quality throughout the process.</p>
+        </div>
+        <div style="background: white; padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: var(--secondary);">Cost Management</h3>
+          <p>Proper planning and execution prevent costly mistakes and budget overruns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
